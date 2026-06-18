@@ -137,8 +137,6 @@ GitHub: https://github.com/Sebastinajoe
 
 <div align="center">
 
-Made with ❤️ as part of the Oasis Infobyte Internship.
-
 ⭐ If you like this project, consider starring the repository!
 
 </div>
