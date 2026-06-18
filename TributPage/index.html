@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cristiano Ronaldo – The GOAT Tribute</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #C8102E;
+      --gold:   #D4A843;
+      --dark:   #0A0A0A;
+      --panel:  #111111;
+      --card:   #181818;
+      --border: rgba(255,255,255,0.07);
+      --text:   #F5F5F5;
+      --muted:  #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 40px;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(200,16,46,0.18) 0%, transparent 60%),
+        linear-gradient(180deg, #0A0A0A 0%, #111 100%);
+      overflow: hidden;
+    }
+
+    /* Animated jersey number background */
+    .hero::before {
+      content: "7";
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(300px, 55vw, 700px);
+      color: rgba(200,16,46,0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .hero-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(212,168,67,0.3);
+      border-radius: 20px;
+      padding: 5px 16px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 12vw, 130px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    .hero h1 .first { color: var(--text); display: block; }
+    .hero h1 .last  { color: var(--red);  display: block; }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(14px, 2.5vw, 20px);
+      color: var(--muted);
+      margin: 20px 0 40px;
+      position: relative;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: clamp(24px, 6vw, 60px);
+      position: relative;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-stat { text-align: center; }
+    .hero-stat .val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 7vw, 64px);
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat .lbl {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 80px 24px; max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 7vw, 64px);
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media(max-width:640px){ .about-grid { grid-template-columns:1fr; } }
+
+    .about-text p {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .about-text p strong { color: var(--text); }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .about-card .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .about-card .row:last-child { border-bottom: none; }
+    .about-card .row .k { color: var(--muted); }
+    .about-card .row .v { color: var(--text); font-weight: 500; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--red), var(--gold), transparent);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .tl-item.visible { opacity: 1; transform: translateX(0); }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 2px solid var(--dark);
+      box-shadow: 0 0 0 3px rgba(200,16,46,0.2);
+    }
+
+    .tl-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .tl-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .tl-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── TROPHIES ── */
+    .trophies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .trophy-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .trophy-card:hover {
+      border-color: rgba(212,168,67,0.4);
+      transform: translateY(-3px);
+    }
+    .trophy-icon { font-size: 32px; margin-bottom: 10px; }
+    .trophy-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .trophy-count {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .trophy-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .quote-wrap {
+      background: linear-gradient(135deg, rgba(200,16,46,0.08), rgba(212,168,67,0.06));
+      border: 1px solid rgba(200,16,46,0.2);
+      border-radius: 20px;
+      padding: clamp(32px, 6vw, 60px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-wrap::before {
+      content: '"';
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 240px;
+      color: rgba(200,16,46,0.06);
+      position: absolute;
+      top: -40px;
+      left: 20px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 3.5vw, 28px);
+      color: var(--text);
+      line-height: 1.6;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .quote-attr {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── RECORDS ── */
+    .records-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .record-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .record-card:hover { border-color: rgba(200,16,46,0.3); }
+    .record-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0; margin-top: 6px;
+    }
+    .record-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .record-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer span { color: var(--red); }
+    footer .badge-footer {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(212,168,67,0.2);
+      border-radius: 20px;
+      padding: 4px 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-badge">OIBSIP · Web Dev · Level 2 · Task 2</div>
+  <h1>
+    <span class="first">Cristiano</span>
+    <span class="last">Ronaldo</span>
+  </h1>
+  <p class="hero-sub">"The man who refused to stop believing in himself."</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">900+</div><div class="lbl">Career Goals</div></div>
+    <div class="hero-stat"><div class="val">5</div><div class="lbl">Ballon d'Or</div></div>
+    <div class="hero-stat"><div class="val">5</div><div class="lbl">Champions League</div></div>
+    <div class="hero-stat"><div class="val">30+</div><div class="lbl">Years of Football</div></div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section>
+  <div class="section-label">About the Legend</div>
+  <div class="section-title">Who is CR7?</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        <strong>Cristiano Ronaldo dos Santos Aveiro</strong> was born on February 5, 1985, in Funchal, Madeira, Portugal. Growing up in poverty, he channelled every hardship into fuel for greatness on the football pitch.
+      </p>
+      <p>
+        From a skinny teenager at Sporting CP to the most decorated footballer of all time, Ronaldo's journey is a masterclass in <strong>discipline, sacrifice, and relentless self-improvement</strong>. He didn't just play football — he reinvented what a footballer could be.
+      </p>
+      <p>
+        His famous work ethic — staying after training, perfecting free kicks, obsessing over his physical condition — turned natural talent into something superhuman. There is no player in history who has combined <strong>goals, consistency, and longevity</strong> the way CR7 has.
+      </p>
+    </div>
+    <div class="about-card">
+      <div class="row"><span class="k">Full Name</span><span class="v">Cristiano Ronaldo</span></div>
+      <div class="row"><span class="k">Born</span><span class="v">5 Feb 1985, Madeira</span></div>
+      <div class="row"><span class="k">Nationality</span><span class="v">Portuguese</span></div>
+      <div class="row"><span class="k">Position</span><span class="v">Forward</span></div>
+      <div class="row"><span class="k">Jersey Number</span><span class="v">#7</span></div>
+      <div class="row"><span class="k">Current Club</span><span class="v">Al Nassr (Saudi Arabia)</span></div>
+      <div class="row"><span class="k">Height</span><span class="v">1.87 m</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="max-width:1000px;margin:0 auto;"></div>
+
+<!-- ── JOURNEY TIMELINE ── -->
+<section>
+  <div class="section-label">The Journey</div>
+  <div class="section-title">Career Timeline</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2002</div>
+      <div class="tl-title">Sporting CP — The Beginning</div>
+      <div class="tl-desc">Made his professional debut at 17 for Sporting CP in Portugal. His dazzling display against Manchester United in a friendly changed his life forever.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2003</div>
+      <div class="tl-title">Manchester United — Sir Alex Calls</div>
+      <div class="tl-desc">Signed by Sir Alex Ferguson for £12.24 million. Wore the iconic #7 shirt. Won 3 Premier League titles, 1 Champions League, and his first Ballon d'Or.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2009</div>
+      <div class="tl-title">Real Madrid — The Galáctico Era</div>
+      <div class="tl-desc">Joined Real Madrid for a then world-record £80 million. Scored 450 goals in 438 games. Won 4 Champions League titles and 4 Ballon d'Or awards.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2016</div>
+      <div class="tl-title">Euro 2016 — National Hero</div>
+      <div class="tl-desc">Led Portugal to their first ever European Championship title, cementing his status as the greatest Portuguese footballer of all time.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2018</div>
+      <div class="tl-title">Juventus — Serie A Dominance</div>
+      <div class="tl-desc">Moved to Juventus for €100 million. Won 2 Serie A titles and scored his famous bicycle kick against Juventus — even Juve fans gave him a standing ovation.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2021</div>
+      <div class="tl-title">Return to Manchester United</div>
+      <div class="tl-desc">Returned to Old Trafford in an emotional homecoming, becoming the all-time top scorer in men's international football.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2023</div>
+      <div class="tl-title">Al Nassr — A New Chapter</div>
+      <div class="tl-desc">Joined Saudi club Al Nassr, continuing to break scoring records well into his late 30s, proving age is just a number when you're CR7.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="max-width:1000px;margin:0 auto;"></div>
+
+<!-- ── TROPHIES ── -->
+<section>
+  <div class="section-label">Honours & Awards</div>
+  <div class="section-title">Trophy Cabinet</div>
+  <div class="trophies-grid">
+    <div class="trophy-card">
+      <div class="trophy-icon">🏆</div>
+      <div class="trophy-name">Ballon d'Or</div>
+      <div class="trophy-count">5</div>
+      <div class="trophy-label">Times Won</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">⭐</div>
+      <div class="trophy-name">Champions League</div>
+      <div class="trophy-count">5</div>
+      <div class="trophy-label">Titles</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">🥇</div>
+      <div class="trophy-name">Premier League</div>
+      <div class="trophy-count">3</div>
+      <div class="trophy-label">Titles</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">🇵🇹</div>
+      <div class="trophy-name">Euro Championship</div>
+      <div class="trophy-count">1</div>
+      <div class="trophy-label">Title (2016)</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">🌍</div>
+      <div class="trophy-name">Nations League</div>
+      <div class="trophy-count">1</div>
+      <div class="trophy-label">Title</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">👟</div>
+      <div class="trophy-name">Golden Boot</div>
+      <div class="trophy-count">4</div>
+      <div class="trophy-label">European Awards</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">⚽</div>
+      <div class="trophy-name">Career Goals</div>
+      <div class="trophy-count">900+</div>
+      <div class="trophy-label">All Competitions</div>
+    </div>
+    <div class="trophy-card">
+      <div class="trophy-icon">🌟</div>
+      <div class="trophy-name">Intl. Goals</div>
+      <div class="trophy-count">130+</div>
+      <div class="trophy-label">All-Time Record</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<div class="quote-section">
+  <div class="quote-wrap">
+    <p class="quote-text">"Your love makes me strong, your hate makes me unstoppable."</p>
+    <div class="quote-attr">— Cristiano Ronaldo</div>
+  </div>
+</div>
+
+<div class="divider" style="max-width:1000px;margin:0 auto;"></div>
+
+<!-- ── RECORDS ── -->
+<section>
+  <div class="section-label">History Books</div>
+  <div class="section-title">World Records</div>
+  <div class="records-grid">
+    <div class="record-card">
+      <div class="record-dot"></div>
+      <div>
+        <div class="record-title">Most International Goals Ever</div>
+        <div class="record-desc">Surpassed 130+ goals for Portugal — the highest tally in men's international football history.</div>
+      </div>
+    </div>
+    <div class="record-card">
+      <div class="record-dot"></div>
+      <div>
+        <div class="record-title">Most Goals in Champions League</div>
+        <div class="record-desc">140+ goals in the UEFA Champions League — a record no one is close to breaking.</div>
+      </div>
+    </div>
+    <div class="record-card">
+      <div class="record-dot"></div>
+      <div>
+        <div class="record-title">First to 900 Career Goals</div>
+        <div class="record-desc">Became the first professional footballer to score 900+ goals across all competitions.</div>
+      </div>
+    </div>
+    <div class="record-card">
+      <div class="record-dot"></div>
+      <div>
+        <div class="record-title">Most Instagram Followers</div>
+        <div class="record-desc">The most followed person on Instagram globally with over 600 million followers.</div>
+      </div>
+    </div>
+    <div class="record-card">
+      <div class="record-dot"></div>
+      <div>
+        <div class="record-title">5 UCL Titles with Different Roles</div>
+        <div class="record-desc">Won the Champions League in different stages of his career — at United, and 4 times at Real Madrid.</div>
+      </div>
+    </div>
+    <div class="record-card">
+      <div class="record-dot"></div>
+      <div>
+        <div class="record-title">Scored in 5 World Cups</div>
+        <div class="record-desc">The only male player to score in five different FIFA World Cup tournaments.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>A tribute to the greatest footballer of all time — <span>Cristiano Ronaldo #7</span></p>
+  <div class="badge-footer">OIBSIP · Web Development · Level 2 · Task 2</div>
+</footer>
+
+<script>
+  // Scroll-triggered timeline animation
+  const items = document.querySelectorAll('.tl-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

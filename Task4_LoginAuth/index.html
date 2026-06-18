@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AuthFlow | OIBSIP – Level 2 Task 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0C0C14;
+      --surface:  #13131F;
+      --card:     #1A1A28;
+      --border:   rgba(255,255,255,0.08);
+      --accent:   #7C3AED;
+      --accent2:  #06B6D4;
+      --green:    #10B981;
+      --red:      #EF4444;
+      --text:     #F1F0FF;
+      --muted:    #6B6A8A;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(124,58,237,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(6,182,212,0.07) 0%, transparent 55%);
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; width: 100%; }
+    .page.active { display: flex; flex-direction: column; align-items: center; }
+
+    /* ── AUTH CARD ── */
+    .auth-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 32px;
+      width: min(420px, 100%);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .auth-badge {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 20px;
+      padding: 4px 12px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .auth-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .auth-title span { color: var(--accent); }
+
+    .auth-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .input-wrap { position: relative; }
+    .form-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 42px 12px 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input::placeholder { color: var(--muted); }
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+    }
+    .form-input.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+    .form-input.success { border-color: var(--green); }
+
+    .toggle-pw {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--muted); cursor: pointer;
+      font-size: 15px; line-height: 1;
+      transition: color 0.15s;
+    }
+    .toggle-pw:hover { color: var(--text); }
+
+    .field-err {
+      font-size: 11px;
+      color: var(--red);
+      margin-top: 5px;
+      display: none;
+    }
+    .field-err.show { display: block; }
+
+    /* Strength bar */
+    .strength-wrap { margin-top: 8px; display: none; }
+    .strength-wrap.show { display: block; }
+    .strength-bar {
+      height: 4px; border-radius: 2px;
+      background: var(--surface);
+      overflow: hidden; margin-bottom: 4px;
+    }
+    .strength-fill { height: 4px; border-radius: 2px; transition: width 0.3s, background 0.3s; }
+    .strength-text { font-size: 11px; color: var(--muted); }
+
+    /* ── SUBMIT BTN ── */
+    .submit-btn {
+      width: 100%;
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: filter 0.15s, transform 0.1s;
+      box-shadow: 0 0 20px rgba(124,58,237,0.3);
+    }
+    .submit-btn:hover  { filter: brightness(1.12); }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      top: 24px; left: 50%;
+      transform: translateX(-50%) translateY(-80px);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 13px; font-weight: 500;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.green { border-color: rgba(16,185,129,0.4); color: var(--green); }
+    .toast.red   { border-color: rgba(239,68,68,0.4);  color: var(--red); }
+
+    /* ── SWITCH LINK ── */
+    .switch-wrap {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .switch-wrap a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .switch-wrap a:hover { text-decoration: underline; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 20px 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+    .divider span { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+    /* ── DASHBOARD ── */
+    .dash-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 32px;
+      width: min(480px, 100%);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    .dash-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 700;
+      color: #fff;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 24px rgba(124,58,237,0.4);
+    }
+    .dash-welcome {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px; color: var(--text);
+      margin-bottom: 6px;
+    }
+    .dash-email {
+      font-size: 13px; color: var(--muted); margin-bottom: 24px;
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 24px;
+    }
+    .dash-stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .dash-stat-val {
+      font-family: 'Space Mono', monospace;
+      font-size: 20px; color: var(--accent2);
+      margin-bottom: 4px;
+    }
+    .dash-stat-lbl { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+    .dash-msg {
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 13px;
+      color: var(--green);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .logout-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 24px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; font-weight: 600;
+      color: var(--muted); cursor: pointer;
+      transition: all 0.15s;
+    }
+    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+  </style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- ── REGISTER PAGE ── -->
+<div class="page active" id="registerPage">
+  <div class="auth-card">
+    <span class="auth-badge">OIBSIP · Level 2 · Task 4</span>
+    <div class="auth-title">AUTH<span>_</span>FLOW</div>
+    <div class="auth-sub">Create your account to get started.</div>
+
+    <div class="form-group">
+      <label class="form-label">Full Name</label>
+      <div class="input-wrap">
+        <input class="form-input" id="regName" type="text" placeholder="Enter your full name" autocomplete="off"/>
+      </div>
+      <div class="field-err" id="regNameErr">Name is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <div class="input-wrap">
+        <input class="form-input" id="regEmail" type="email" placeholder="you@email.com" autocomplete="off"/>
+      </div>
+      <div class="field-err" id="regEmailErr">Enter a valid email address.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <div class="input-wrap">
+        <input class="form-input" id="regPw" type="password" placeholder="Create a strong password"/>
+        <button class="toggle-pw" onclick="togglePw('regPw', this)">👁</button>
+      </div>
+      <div class="strength-wrap" id="strengthWrap">
+        <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        <div class="strength-text" id="strengthText"></div>
+      </div>
+      <div class="field-err" id="regPwErr">Password must be at least 6 characters.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Confirm Password</label>
+      <div class="input-wrap">
+        <input class="form-input" id="regPwConfirm" type="password" placeholder="Repeat your password"/>
+        <button class="toggle-pw" onclick="togglePw('regPwConfirm', this)">👁</button>
+      </div>
+      <div class="field-err" id="regPwConfirmErr">Passwords do not match.</div>
+    </div>
+
+    <button class="submit-btn" onclick="register()">Create Account</button>
+
+    <div class="divider"><span>Already have an account?</span></div>
+    <div class="switch-wrap">
+      <a onclick="showPage('loginPage')">Sign in instead →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── LOGIN PAGE ── -->
+<div class="page" id="loginPage">
+  <div class="auth-card">
+    <span class="auth-badge">OIBSIP · Level 2 · Task 4</span>
+    <div class="auth-title">WELCOME<span>_</span>BACK</div>
+    <div class="auth-sub">Sign in to access your secured dashboard.</div>
+
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <div class="input-wrap">
+        <input class="form-input" id="loginEmail" type="email" placeholder="you@email.com"/>
+      </div>
+      <div class="field-err" id="loginEmailErr">Enter your email address.</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <div class="input-wrap">
+        <input class="form-input" id="loginPw" type="password" placeholder="Enter your password"/>
+        <button class="toggle-pw" onclick="togglePw('loginPw', this)">👁</button>
+      </div>
+      <div class="field-err" id="loginPwErr">Enter your password.</div>
+    </div>
+
+    <div class="field-err show" id="loginGenErr" style="display:none; text-align:center; margin-bottom:10px;"></div>
+
+    <button class="submit-btn" onclick="login()">Sign In</button>
+
+    <div class="divider"><span>Don't have an account?</span></div>
+    <div class="switch-wrap">
+      <a onclick="showPage('registerPage')">Create account →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── DASHBOARD PAGE ── -->
+<div class="page" id="dashPage">
+  <div class="dash-card">
+    <div class="dash-avatar" id="dashAvatar">S</div>
+    <div class="dash-welcome" id="dashName">Hello, User!</div>
+    <div class="dash-email" id="dashEmail">user@email.com</div>
+
+    <div class="dash-grid">
+      <div class="dash-stat">
+        <div class="dash-stat-val" id="dashTime">--:--</div>
+        <div class="dash-stat-lbl">Login Time</div>
+      </div>
+      <div class="dash-stat">
+        <div class="dash-stat-val" id="dashDate">---</div>
+        <div class="dash-stat-lbl">Today's Date</div>
+      </div>
+    </div>
+
+    <div class="dash-msg">
+      🔒 You are now on the secured page.<br/>
+      Authentication successful — welcome aboard!
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Sign Out</button>
+  </div>
+</div>
+
+<script>
+  // ── "Database" — stored in memory ──
+  const users = {};
+  let currentUser = null;
+
+  // ── Page switcher ──
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    clearErrors();
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.field-err').forEach(e => e.classList.remove('show'));
+    document.querySelectorAll('.form-input').forEach(i => { i.classList.remove('error','success'); });
+    const ge = document.getElementById('loginGenErr');
+    if (ge) { ge.style.display = 'none'; ge.textContent = ''; }
+  }
+
+  // ── Toggle password visibility ──
+  function togglePw(id, btn) {
+    const inp = document.getElementById(id);
+    if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+    else { inp.type = 'password'; btn.textContent = '👁'; }
+  }
+
+  // ── Password strength ──
+  document.getElementById('regPw').addEventListener('input', function() {
+    const wrap = document.getElementById('strengthWrap');
+    const fill = document.getElementById('strengthFill');
+    const text = document.getElementById('strengthText');
+    const v = this.value;
+    if (!v) { wrap.classList.remove('show'); return; }
+    wrap.classList.add('show');
+    let score = 0;
+    if (v.length >= 6)  score++;
+    if (v.length >= 10) score++;
+    if (/[A-Z]/.test(v)) score++;
+    if (/[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    const levels = [
+      { w:'20%',  bg:'#EF4444', t:'Weak' },
+      { w:'40%',  bg:'#F59E0B', t:'Fair' },
+      { w:'60%',  bg:'#F59E0B', t:'Good' },
+      { w:'80%',  bg:'#10B981', t:'Strong' },
+      { w:'100%', bg:'#10B981', t:'Very Strong' },
+    ];
+    const l = levels[Math.min(score, 4)];
+    fill.style.width = l.w;
+    fill.style.background = l.bg;
+    text.textContent = l.t;
+    text.style.color = l.bg;
+  });
+
+  // ── Toast ──
+  function showToast(msg, type='') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast ' + type + ' show';
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── Validate email ──
+  function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+  // ── REGISTER ──
+  function register() {
+    clearErrors();
+    const name  = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const pw    = document.getElementById('regPw').value;
+    const pw2   = document.getElementById('regPwConfirm').value;
+    let valid = true;
+
+    if (!name) {
+      showErr('regName','regNameErr','Name is required.'); valid=false;
+    }
+    if (!validEmail(email)) {
+      showErr('regEmail','regEmailErr','Enter a valid email address.'); valid=false;
+    } else if (users[email.toLowerCase()]) {
+      showErr('regEmail','regEmailErr','This email is already registered.'); valid=false;
+    }
+    if (pw.length < 6) {
+      showErr('regPw','regPwErr','Password must be at least 6 characters.'); valid=false;
+    }
+    if (pw !== pw2) {
+      showErr('regPwConfirm','regPwConfirmErr','Passwords do not match.'); valid=false;
+    }
+    if (!valid) return;
+
+    // Save user
+    users[email.toLowerCase()] = { name, email, pw };
+    showToast('✅ Account created! Please sign in.', 'green');
+    setTimeout(() => showPage('loginPage'), 1000);
+  }
+
+  // ── LOGIN ──
+  function login() {
+    clearErrors();
+    const email = document.getElementById('loginEmail').value.trim();
+    const pw    = document.getElementById('loginPw').value;
+    let valid = true;
+
+    if (!email) { showErr('loginEmail','loginEmailErr','Enter your email address.'); valid=false; }
+    if (!pw)    { showErr('loginPw','loginPwErr','Enter your password.'); valid=false; }
+    if (!valid) return;
+
+    const user = users[email.toLowerCase()];
+    if (!user || user.pw !== pw) {
+      const ge = document.getElementById('loginGenErr');
+      ge.textContent = '❌ Invalid email or password. Try again.';
+      ge.style.display = 'block';
+      document.getElementById('loginEmail').classList.add('error');
+      document.getElementById('loginPw').classList.add('error');
+      showToast('Login failed — check your credentials.', 'red');
+      return;
+    }
+
+    // Success
+    currentUser = user;
+    const now = new Date();
+    document.getElementById('dashAvatar').textContent = user.name.charAt(0).toUpperCase();
+    document.getElementById('dashName').textContent   = 'Hello, ' + user.name + '!';
+    document.getElementById('dashEmail').textContent  = user.email;
+    document.getElementById('dashTime').textContent   =
+      String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('dashDate').textContent   =
+      now.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    showToast('✅ Login successful! Welcome back.', 'green');
+    showPage('dashPage');
+  }
+
+  // ── LOGOUT ──
+  function logout() {
+    currentUser = null;
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPw').value = '';
+    showToast('👋 Signed out successfully.', '');
+    showPage('loginPage');
+  }
+
+  // ── Helper: show field error ──
+  function showErr(inputId, errId, msg) {
+    const inp = document.getElementById(inputId);
+    const err = document.getElementById(errId);
+    inp.classList.add('error');
+    err.textContent = msg;
+    err.classList.add('show');
+  }
+
+  // Enter key on forms
+  document.getElementById('regPwConfirm').addEventListener('keydown', e => { if(e.key==='Enter') register(); });
+  document.getElementById('loginPw').addEventListener('keydown',      e => { if(e.key==='Enter') login(); });
+</script>
+</body>
+</html>
