@@ -276,7 +276,7 @@ GitHub: https://github.com/Sebastinajoe
 
 
 
-Made with ❤️ as part of the Oasis Infobyte Internship.
+
 
 
 
