@@ -140,7 +140,7 @@ https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/
 A complete register, login, and secure dashboard system.
 
 **Live Demo:**
-https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/index.html
+https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/
 
 ### Features
 
