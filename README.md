@@ -240,12 +240,12 @@ No installations, dependencies, or build tools are required.
 
 # 🔗 All Live Demos
 
-| Task                          | Link                                                               |
-| ----------------------------- | ------------------------------------------------------------------ |
-| Task 1 — Calculator           | https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/index.html  |
-| Task 2 — Tribute Page         | https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/index.html |
-| Task 3 — To-Do App            | https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/index.html     |
-| Task 4 — Login Authentication | https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/index.html   |
+| Task                          | Link                                                     |
+| ----------------------------- | -------------------------------------------------------- |
+| Task 1 — Calculator           | https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/  |
+| Task 2 — Tribute Page         | https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/ |
+| Task 3 — To-Do App            | https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/     |
+| Task 4 — Login Authentication | https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/   |
 
 ---
 
