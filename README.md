@@ -83,7 +83,7 @@ A modern, fully functional calculator application with a dark neon-purple theme.
 A tribute page dedicated to Cristiano Ronaldo.
 
 **Live Demo:**
-https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/index.html
+ https://sebastinajoe.github.io/OIBSIP/TributPage/
 
 ### Features
 
