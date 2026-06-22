@@ -1,31 +1,37 @@
-OIBSIP — Oasis Infobyte Internship Projects
+# OIBSIP — Oasis Infobyte Internship Projects
 
 <div align="center">
-Web Development & Designing Internship — Level 2
 
-📂 GitHub Repository · 🌐 Live Demo
+# Web Development & Designing Internship — Level 2
+
+📂 GitHub Repository | 🌐 Live Demo
 
 </div>
 
-👩‍💻 About Me
+---
 
-Name: Sebastina J
-Domain: Web Development and Designing
-Level: Level 2
-Program: Oasis Infobyte Internship Program (OIBSIP)
-Timeline: June 15 – July 15, 2026
-GitHub: https://github.com/sebastinajoe
+## 👩‍💻 About Me
 
+**Name:** Sebastina J
+**Domain:** Web Development and Designing
+**Level:** Level 2
+**Program:** Oasis Infobyte Internship Program (OIBSIP)
+**Timeline:** June 15 – July 15, 2026
+**GitHub:** https://github.com/sebastinajoe
 
-📌 About the Internship
+---
+
+## 📌 About the Internship
 
 Oasis Infobyte is a community-driven internship platform that creates opportunities for leadership development, learning, and student engagement. This internship focuses on building real-world web development projects using HTML, CSS, and JavaScript.
 
-For the Web Development and Designing domain, interns must complete any one level (Level 1, 2, or 3). I have chosen Level 2, which consists of 4 tasks.
+For the Web Development and Designing domain, interns must complete any one level (Level 1, Level 2, or Level 3). I have chosen **Level 2**, which consists of four tasks.
 
+---
 
-📁 Repository Structure
+## 📁 Repository Structure
 
+```text
 OIBSIP/
 ├── Task1_Calculator/
 │   ├── index.html
@@ -39,172 +45,223 @@ OIBSIP/
 ├── Task4_LoginAuth/
 │   ├── index.html
 │   └── README.md
-└── README.md              ← This file
+└── README.md
+```
 
+---
 
-🗂️ Task Overview
+# 🗂️ Task Overview
 
-Task 1 — Calculator
+## Task 1 — Calculator
 
 A modern, fully functional calculator application with a dark neon-purple theme.
 
-Live Demo: https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/index.html
+**Live Demo:**
+https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/index.html
 
-Features:
+### Features
 
+* Addition, subtraction, multiplication, division
+* Percentage and sign toggle
+* Collapsible calculation history (stores last 20)
+* Full keyboard support with visual flash feedback
+* Backspace key support
+* Division by zero error handling
+* Responsive design using clamp() and min()
 
-Addition, subtraction, multiplication, division
-Percentage and sign toggle
-Collapsible calculation history (stores last 20)
-Full keyboard support with visual flash feedback
-Backspace key support
-Division by zero error handling
-Responsive design using clamp() and min()
+### Technologies Used
 
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* Google Fonts (Share Tech Mono + Inter)
 
-Technologies: HTML5, CSS3, Vanilla JavaScript, Google Fonts (Share Tech Mono + Inter)
+---
 
+## Task 2 — Tribute Page
 
-Task 2 — Tribute Page
+A tribute page dedicated to Cristiano Ronaldo.
 
-A tribute page dedicated to Cristiano Ronaldo — the greatest footballer of all time.
+**Live Demo:**
+https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/index.html
 
-Live Demo: https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/index.html
+### Features
 
-Features:
+* Full-screen hero with ghost #7 watermark and career stats
+* Biography section with personal info card
+* Animated career timeline (2002 → 2023)
+* Trophy cabinet with major honours
+* Famous quote section
+* World records section
+* Fully responsive design
+* Smooth scrolling
 
+### Technologies Used
 
-Full-screen hero with ghost #7 watermark and career stats
-Biography section with personal info card
-Animated career timeline (2002 → 2023) using IntersectionObserver
-Trophy cabinet with 8 major honours
-Famous quote section
-World records section with 6 cards
-Fully responsive design
-Smooth scroll behaviour
+* HTML5
+* CSS3
+* JavaScript (IntersectionObserver)
+* Google Fonts (Bebas Neue, Playfair Display, Inter)
 
+---
 
-Technologies: HTML5, CSS3, JavaScript (IntersectionObserver), Google Fonts (Bebas Neue + Playfair Display + Inter)
+## Task 3 — To-Do Web App
 
+A complete task management web application.
 
-Task 3 — To-Do Web App
+**Live Demo:**
+https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/index.html
 
-A complete task management web app with pending and completed sections.
+### Features
 
-Live Demo: https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/index.html
+* Add, edit, and delete tasks
+* Mark tasks as complete
+* Separate Pending and Completed sections
+* Clear entire section at once
+* Live statistics
+* Progress tracking bar
+* Added and completed timestamps
+* Slide-in animations
+* Sticky top bar with live date
+* Keyboard shortcuts
+* XSS-safe rendering
 
-Features:
+### Technologies Used
 
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* Google Fonts (Plus Jakarta Sans + Space Mono)
 
-Add, edit, delete tasks
-Mark tasks as complete via checkbox
-Separate Pending and Completed sections
-Clear entire section at once
-Live stats — Total, Pending, Completed count
-Progress bar showing percentage of tasks done
-Added and completed timestamps on each task
-Slide-in animation on new tasks
-Sticky top bar with live date
-Keyboard support (Enter to add, Enter/Escape in edit modal)
-XSS-safe rendering
+---
 
+## Task 4 — Login Authentication
 
-Technologies: HTML5, CSS3, Vanilla JavaScript, Google Fonts (Plus Jakarta Sans + Space Mono)
+A complete register, login, and secure dashboard system.
 
+**Live Demo:**
+https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/index.html
 
-Task 4 — Login Authentication
+### Features
 
-A complete register, login and secured dashboard system.
+* User registration
+* User login
+* Secure dashboard access
+* Real-time validation
+* Password strength indicator
+* Show/hide password option
+* Toast notifications
+* Duplicate email checking
+* Auto-generated avatar
+* Login date and time display
+* Logout functionality
+* Enter key submission
+* Responsive design
 
-Live Demo: https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/index.html
+### Technologies Used
 
-Features:
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* Google Fonts (Plus Jakarta Sans + Space Mono)
 
+---
 
-Register page with name, email, password, confirm password
-Login page with email and password
-Secured dashboard — accessible only after login
-Real-time field-level validation with error messages
-Password strength indicator (5 levels — Weak to Very Strong)
-Show/hide password toggle
-Toast notifications for success and error states
-Duplicate email check on registration
-Auto-generated avatar from user's first initial
-Login time and date displayed on dashboard
-Logout functionality
-Enter key submits forms
-Responsive design
+# 🛠️ Technologies Used
 
+| Technology   | Purpose                                |
+| ------------ | -------------------------------------- |
+| HTML5        | Structure and semantic layout          |
+| CSS3         | Styling, animations, responsive design |
+| JavaScript   | Logic, interactivity, DOM manipulation |
+| Google Fonts | Typography                             |
+| GitHub Pages | Project deployment                     |
 
-Technologies: HTML5, CSS3, Vanilla JavaScript, Google Fonts (Plus Jakarta Sans + Space Mono)
+---
 
+# 🚀 How to Run Locally
 
-🛠️ Technologies Used
-
-TechnologyPurposeHTML5Page structure and semantic layoutCSS3Styling, animations, responsive designVanilla JavaScriptDOM manipulation, logic, interactivityGoogle FontsTypography across all tasksGitHub PagesLive deployment of all projects
-
-
-🚀 How to Run Locally
-
-bash# Clone the repository
+```bash
+# Clone the repository
 git clone https://github.com/sebastinajoe/OIBSIP.git
 
+# Open project folder
+cd OIBSIP
+
 # Open any task folder
-cd OIBSIP/Task1_Calculator
+cd Task1_Calculator
 
-# Open index.html in your browser
-# Double-click the file or right-click → Open with browser
+# Open index.html in browser
+```
 
-No installations, no dependencies, no build tools needed. Every task runs directly in the browser.
+No installations, dependencies, or build tools are required.
 
+---
 
-⌨️ Keyboard Shortcuts — Task 1 Calculator
+# ⌨️ Keyboard Shortcuts (Calculator)
 
-KeyAction0 – 9Enter digits+ - * /Arithmetic operationsEnter or =Calculate resultBackspaceDelete last digitEscapeClear all%Percentage
+| Key       | Action                |
+| --------- | --------------------- |
+| 0–9       | Enter digits          |
+| + - * /   | Arithmetic operations |
+| Enter / = | Calculate result      |
+| Backspace | Delete last digit     |
+| Escape    | Clear all             |
+| %         | Percentage            |
 
+---
 
-📋 Internship Submission Checklist
+# 📋 Internship Submission Checklist
 
+* [x] Task 1 — Calculator completed
+* [x] Task 2 — Tribute Page completed
+* [x] Task 3 — To-Do Web App completed
+* [x] Task 4 — Login Authentication completed
+* [x] All tasks pushed to GitHub repository
+* [x] All tasks deployed using GitHub Pages
+* [x] Demo videos created
+* [x] Videos shared on LinkedIn
+* [x] README files completed
+* [x] Peer evaluation completed
 
- Task 1 — Calculator completed
- Task 2 — Tribute Page completed
- Task 3 — To-Do Web App completed
- Task 4 — Login Authentication completed
- All tasks pushed to GitHub OIBSIP repository
- All tasks deployed via GitHub Pages
- Demo videos created for all tasks
- Videos posted on LinkedIn with #oasisinfobyte
- README files written for all tasks
- Peer evaluation completed (watched and commented on 2 fellow intern videos)
+---
 
+# 🎯 Internship Details
 
+| Field           | Details                           |
+| --------------- | --------------------------------- |
+| Program         | Oasis Infobyte Internship Program |
+| Domain          | Web Development and Designing     |
+| Level           | Level 2                           |
+| Tasks Completed | Task 1, Task 2, Task 3, Task 4    |
+| Timeline        | June 15 – July 15, 2026           |
 
-🎯 Internship Details
+---
 
-FieldDetailsProgramOasis Infobyte Internship Program (OIBSIP)DomainWeb Development and DesigningLevelLevel 2Tasks CompletedTask 1, Task 2, Task 3, Task 4TimelineJune 15 – July 15, 2026
+# 🔗 All Live Demos
 
+| Task                          | Link                                                               |
+| ----------------------------- | ------------------------------------------------------------------ |
+| Task 1 — Calculator           | https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/index.html  |
+| Task 2 — Tribute Page         | https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/index.html |
+| Task 3 — To-Do App            | https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/index.html     |
+| Task 4 — Login Authentication | https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/index.html   |
 
-🔗 All Live Demos
+---
 
-TaskLinkTask 1 — Calculatorhttps://sebastinajoe.github.io/OIBSIP/Task1_Calculator/index.htmlTask 2 — Tribute Pagehttps://sebastinajoe.github.io/OIBSIP/Task2_TributePage/index.htmlTask 3 — To-Do Apphttps://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/index.htmlTask 4 — Login Authhttps://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/index.html
+# 👩‍💻 Author
 
-
-👩‍💻 Author
-
-Sebastina J
+**Sebastina J**
 
 GitHub: https://github.com/sebastinajoe
 
+---
 
 <div align="center">
+
 Made with ❤️ as part of the Oasis Infobyte AICTE Internship
 
-⭐ If you found this helpful, consider starring the repo!
+⭐ If you found this project useful, consider giving the repository a star!
 
-</div>ShareContentpdf<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculator | OIBSIP – Web Dev Task 1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;60pasted
+</div>
+
