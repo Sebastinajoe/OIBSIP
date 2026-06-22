@@ -57,7 +57,7 @@ OIBSIP/
 A modern, fully functional calculator application with a dark neon-purple theme.
 
 **Live Demo:**
-https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/index.html
+ https://sebastinajoe.github.io/OIBSIP/Calculator/
 
 ### Features
 
