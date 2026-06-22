@@ -242,8 +242,8 @@ No installations, dependencies, or build tools are required.
 
 | Task                          | Link                                                     |
 | ----------------------------- | -------------------------------------------------------- |
-| Task 1 — Calculator           | https://sebastinajoe.github.io/OIBSIP/Task1_Calculator/  |
-| Task 2 — Tribute Page         | https://sebastinajoe.github.io/OIBSIP/Task2_TributePage/ |
+| Task 1 — Calculator           | https://sebastinajoe.github.io/OIBSIP/Calculator/        |
+| Task 2 — Tribute Page         | https://sebastinajoe.github.io/OIBSIP/TributPage/        |
 | Task 3 — To-Do App            | https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/     |
 | Task 4 — Login Authentication | https://sebastinajoe.github.io/OIBSIP/Task4_LoginAuth/   |
 
