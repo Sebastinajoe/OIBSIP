@@ -110,7 +110,7 @@ A tribute page dedicated to Cristiano Ronaldo.
 A complete task management web application.
 
 **Live Demo:**
-https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/index.html
+https://sebastinajoe.github.io/OIBSIP/Task3_TodoApp/
 
 ### Features
 
